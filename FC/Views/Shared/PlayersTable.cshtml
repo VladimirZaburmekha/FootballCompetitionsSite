@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FC.Models.Player>
+
+<table class="table table-striped">
+<tr>
+    <th>
+        Ім'я
+    </th>
+    <th>
+        Прізвище
+    </th>
+    <th>
+        Дата Народжененя
+    </th>
+    <th>
+        Команда
+    </th>
+    <th>
+    </th>
+</tr>
+
+@{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerSurname)
+            </td>
+            <td>
+                @item.BirthdayDate.Value.ToString("yyyy.MM.dd")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Team.TeamName)
+            </td>
+             <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PlayerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PlayerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PlayerId })
+        </td>
+        </tr>
+    }
+}
+    </table>

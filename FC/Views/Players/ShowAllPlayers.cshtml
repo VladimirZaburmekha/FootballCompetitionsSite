@@ -1,0 +1,9 @@
+﻿@model IEnumerable<FC.Models.Player>
+
+@{
+    ViewBag.Title = "ShowAllPlayers";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
+
+<h2>Всі гравці</h2>
+@Html.Partial("PlayersTable")

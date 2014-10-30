@@ -51,3 +51,29 @@ C:\Users\ZV\documents\visual studio 2012\Projects\FC\FC\bin\System.Web.WebPages.
 C:\Users\ZV\documents\visual studio 2012\Projects\FC\FC\obj\Debug\FC.csprojResolveAssemblyReference.cache
 C:\Users\ZV\documents\visual studio 2012\Projects\FC\FC\obj\Debug\FC.dll
 C:\Users\ZV\documents\visual studio 2012\Projects\FC\FC\obj\Debug\FC.pdb
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\FC.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\FC.pdb
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\Antlr3.Runtime.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\EntityFramework.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\Microsoft.Web.Mvc.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\Newtonsoft.Json.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.Mvc.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.Optimization.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.Providers.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.Razor.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.WebPages.Deployment.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.WebPages.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.WebPages.Razor.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\WebGrease.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\EntityFramework.xml
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\Newtonsoft.Json.xml
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.Mvc.xml
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.Razor.xml
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.WebPages.xml
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.WebPages.Deployment.xml
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\bin\System.Web.WebPages.Razor.xml
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\obj\Debug\FC.csprojResolveAssemblyReference.cache
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\obj\Debug\FC.dll
+C:\Users\ZV\Documents\FootballCompetitionsSite\FC\obj\Debug\FC.pdb

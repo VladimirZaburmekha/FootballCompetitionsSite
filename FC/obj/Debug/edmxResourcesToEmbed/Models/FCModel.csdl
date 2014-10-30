@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FootballCompetitionsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FootballCompetitionsEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="FootballCompetitionsModel.Address" />
+    <EntitySet Name="Admins" EntityType="FootballCompetitionsModel.Admin" />
+    <EntitySet Name="Coaches" EntityType="FootballCompetitionsModel.Coach" />
+    <EntitySet Name="Goals" EntityType="FootballCompetitionsModel.Goal" />
+    <EntitySet Name="Leagues" EntityType="FootballCompetitionsModel.League" />
+    <EntitySet Name="Matches" EntityType="FootballCompetitionsModel.Match" />
+    <EntitySet Name="Players" EntityType="FootballCompetitionsModel.Player" />
+    <EntitySet Name="sysdiagrams" EntityType="FootballCompetitionsModel.sysdiagram" />
+    <EntitySet Name="Teams" EntityType="FootballCompetitionsModel.Team" />
+    <AssociationSet Name="FK_Coaches_Addresses" Association="FootballCompetitionsModel.FK_Coaches_Addresses">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Coaches" EntitySet="Coaches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Matches_Addresses" Association="FootballCompetitionsModel.FK_Matches_Addresses">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Matches" EntitySet="Matches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Players_Addresses" Association="FootballCompetitionsModel.FK_Players_Addresses">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Players" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teams_Addresses" Association="FootballCompetitionsModel.FK_Teams_Addresses">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Teams" EntitySet="Teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Coaches_Teams" Association="FootballCompetitionsModel.FK_Coaches_Teams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="Coaches" EntitySet="Coaches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Goals_Matches" Association="FootballCompetitionsModel.FK_Goals_Matches">
+      <End Role="Matches" EntitySet="Matches" />
+      <End Role="Goals" EntitySet="Goals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Goals_Players" Association="FootballCompetitionsModel.FK_Goals_Players">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="Goals" EntitySet="Goals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Matches_Leagues" Association="FootballCompetitionsModel.FK_Matches_Leagues">
+      <End Role="Leagues" EntitySet="Leagues" />
+      <End Role="Matches" EntitySet="Matches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Matches_Teams1" Association="FootballCompetitionsModel.FK_Matches_Teams1">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="Matches" EntitySet="Matches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Matches_Teams2" Association="FootballCompetitionsModel.FK_Matches_Teams2">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="Matches" EntitySet="Matches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Players_Teams" Association="FootballCompetitionsModel.FK_Players_Teams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="Players" EntitySet="Players" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Region" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Street" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BuildingNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Coaches" Relationship="FootballCompetitionsModel.FK_Coaches_Addresses" FromRole="Addresses" ToRole="Coaches" />
+    <NavigationProperty Name="Matches" Relationship="FootballCompetitionsModel.FK_Matches_Addresses" FromRole="Addresses" ToRole="Matches" />
+    <NavigationProperty Name="Players" Relationship="FootballCompetitionsModel.FK_Players_Addresses" FromRole="Addresses" ToRole="Players" />
+    <NavigationProperty Name="Teams" Relationship="FootballCompetitionsModel.FK_Teams_Addresses" FromRole="Addresses" ToRole="Teams" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminLogin" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="MD5PasswordHash" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Coach">
+    <Key>
+      <PropertyRef Name="CoachId" />
+    </Key>
+    <Property Name="CoachId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CoachName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CoachSurname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BirthdayDate" Type="DateTime" Precision="3" />
+    <Property Name="AddressId" Type="Int32" />
+    <Property Name="CoachPhone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TeamId" Type="Int32" />
+    <NavigationProperty Name="Address" Relationship="FootballCompetitionsModel.FK_Coaches_Addresses" FromRole="Coaches" ToRole="Addresses" />
+    <NavigationProperty Name="Team" Relationship="FootballCompetitionsModel.FK_Coaches_Teams" FromRole="Coaches" ToRole="Teams" />
+  </EntityType>
+  <EntityType Name="Goal">
+    <Key>
+      <PropertyRef Name="GoalId" />
+    </Key>
+    <Property Name="GoalId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerId" Type="Int32" Nullable="false" />
+    <Property Name="MatchId" Type="Int32" Nullable="false" />
+    <Property Name="Minute" Type="Int32" />
+    <NavigationProperty Name="Match" Relationship="FootballCompetitionsModel.FK_Goals_Matches" FromRole="Goals" ToRole="Matches" />
+    <NavigationProperty Name="Player" Relationship="FootballCompetitionsModel.FK_Goals_Players" FromRole="Goals" ToRole="Players" />
+  </EntityType>
+  <EntityType Name="League">
+    <Key>
+      <PropertyRef Name="LeagueId" />
+    </Key>
+    <Property Name="LeagueId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="LeagueName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LeagueDescription" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Matches" Relationship="FootballCompetitionsModel.FK_Matches_Leagues" FromRole="Leagues" ToRole="Matches" />
+  </EntityType>
+  <EntityType Name="Match">
+    <Key>
+      <PropertyRef Name="MatchId" />
+    </Key>
+    <Property Name="MatchId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="MatchName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Team1Id" Type="Int32" Nullable="false" />
+    <Property Name="Team2Id" Type="Int32" Nullable="false" />
+    <Property Name="LeagueId" Type="Int32" />
+    <Property Name="AddressId" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Address" Relationship="FootballCompetitionsModel.FK_Matches_Addresses" FromRole="Matches" ToRole="Addresses" />
+    <NavigationProperty Name="Goals" Relationship="FootballCompetitionsModel.FK_Goals_Matches" FromRole="Matches" ToRole="Goals" />
+    <NavigationProperty Name="League" Relationship="FootballCompetitionsModel.FK_Matches_Leagues" FromRole="Matches" ToRole="Leagues" />
+    <NavigationProperty Name="Team" Relationship="FootballCompetitionsModel.FK_Matches_Teams1" FromRole="Matches" ToRole="Teams" />
+    <NavigationProperty Name="Team1" Relationship="FootballCompetitionsModel.FK_Matches_Teams2" FromRole="Matches" ToRole="Teams" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="PlayerId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PlayerSurname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BirthdayDate" Type="DateTime" Precision="3" />
+    <Property Name="TeamId" Type="Int32" />
+    <Property Name="AddressId" Type="Int32" />
+    <Property Name="PlayerPhone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Address" Relationship="FootballCompetitionsModel.FK_Players_Addresses" FromRole="Players" ToRole="Addresses" />
+    <NavigationProperty Name="Goals" Relationship="FootballCompetitionsModel.FK_Goals_Players" FromRole="Players" ToRole="Goals" />
+    <NavigationProperty Name="Team" Relationship="FootballCompetitionsModel.FK_Players_Teams" FromRole="Players" ToRole="Teams" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="TeamId" />
+    </Key>
+    <Property Name="TeamId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="AddressId" Type="Int32" />
+    <NavigationProperty Name="Address" Relationship="FootballCompetitionsModel.FK_Teams_Addresses" FromRole="Teams" ToRole="Addresses" />
+    <NavigationProperty Name="Coaches" Relationship="FootballCompetitionsModel.FK_Coaches_Teams" FromRole="Teams" ToRole="Coaches" />
+    <NavigationProperty Name="Matches" Relationship="FootballCompetitionsModel.FK_Matches_Teams1" FromRole="Teams" ToRole="Matches" />
+    <NavigationProperty Name="Matches1" Relationship="FootballCompetitionsModel.FK_Matches_Teams2" FromRole="Teams" ToRole="Matches" />
+    <NavigationProperty Name="Players" Relationship="FootballCompetitionsModel.FK_Players_Teams" FromRole="Teams" ToRole="Players" />
+  </EntityType>
+  <Association Name="FK_Coaches_Addresses">
+    <End Role="Addresses" Type="FootballCompetitionsModel.Address" Multiplicity="0..1" />
+    <End Role="Coaches" Type="FootballCompetitionsModel.Coach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="Coaches">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Matches_Addresses">
+    <End Role="Addresses" Type="FootballCompetitionsModel.Address" Multiplicity="0..1" />
+    <End Role="Matches" Type="FootballCompetitionsModel.Match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="Matches">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Players_Addresses">
+    <End Role="Addresses" Type="FootballCompetitionsModel.Address" Multiplicity="0..1" />
+    <End Role="Players" Type="FootballCompetitionsModel.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="Players">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teams_Addresses">
+    <End Role="Addresses" Type="FootballCompetitionsModel.Address" Multiplicity="0..1" />
+    <End Role="Teams" Type="FootballCompetitionsModel.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="Teams">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Coaches_Teams">
+    <End Role="Teams" Type="FootballCompetitionsModel.Team" Multiplicity="0..1" />
+    <End Role="Coaches" Type="FootballCompetitionsModel.Coach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="Coaches">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Goals_Matches">
+    <End Role="Matches" Type="FootballCompetitionsModel.Match" Multiplicity="1" />
+    <End Role="Goals" Type="FootballCompetitionsModel.Goal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Matches">
+        <PropertyRef Name="MatchId" />
+      </Principal>
+      <Dependent Role="Goals">
+        <PropertyRef Name="MatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Goals_Players">
+    <End Role="Players" Type="FootballCompetitionsModel.Player" Multiplicity="1" />
+    <End Role="Goals" Type="FootballCompetitionsModel.Goal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="Goals">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Matches_Leagues">
+    <End Role="Leagues" Type="FootballCompetitionsModel.League" Multiplicity="0..1" />
+    <End Role="Matches" Type="FootballCompetitionsModel.Match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Leagues">
+        <PropertyRef Name="LeagueId" />
+      </Principal>
+      <Dependent Role="Matches">
+        <PropertyRef Name="LeagueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Matches_Teams1">
+    <End Role="Teams" Type="FootballCompetitionsModel.Team" Multiplicity="1" />
+    <End Role="Matches" Type="FootballCompetitionsModel.Match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="Matches">
+        <PropertyRef Name="Team1Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Matches_Teams2">
+    <End Role="Teams" Type="FootballCompetitionsModel.Team" Multiplicity="1" />
+    <End Role="Matches" Type="FootballCompetitionsModel.Match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="Matches">
+        <PropertyRef Name="Team2Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Players_Teams">
+    <End Role="Teams" Type="FootballCompetitionsModel.Team" Multiplicity="0..1" />
+    <End Role="Players" Type="FootballCompetitionsModel.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="Players">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

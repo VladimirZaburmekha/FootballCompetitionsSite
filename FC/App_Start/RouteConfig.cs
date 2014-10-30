@@ -18,6 +18,12 @@ namespace FC
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                "Players",
+               "players",
+               new { controller = "PlayersController", action = "ShowAllPlayers" },
+               new[] { typeof(Controllers.PlayersController).Namespace }
+            );
         }
     }
 }

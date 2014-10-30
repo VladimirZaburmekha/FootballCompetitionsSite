@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace FootballCompetitions.Services
+namespace FC.Services
 {
     public class BaseService<TObject> where TObject:class 
     {
