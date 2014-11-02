@@ -1,4 +1,6 @@
-﻿@model IEnumerable<FC.Models.Player>
+﻿@using System.Runtime.InteropServices
+@using System.Text
+@model IEnumerable<FC.Models.Player>
 
 <table class="table table-striped">
 <tr>
@@ -29,15 +31,15 @@
                 @Html.DisplayFor(modelItem => item.PlayerSurname)
             </td>
             <td>
-                @item.BirthdayDate.Value.ToString("yyyy.MM.dd")
+                @Html.DisplayFor(modelItem=>item.BirthdayDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Team.TeamName)
             </td>
              <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PlayerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PlayerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PlayerId })
+            @Html.ActionLink("Змінити","EditPlayer", new {controller="Players", id=item.PlayerId }) |
+            @Html.ActionLink("Деталі", "DetailsOfPlayer", new { controller="Players",id=item.PlayerId }) |
+            @Html.ActionLink("Видалити", "DeletePlayer", new {controller="Players", id=item.PlayerId })
         </td>
         </tr>
     }

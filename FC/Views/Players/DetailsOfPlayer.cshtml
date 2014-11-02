@@ -1,0 +1,56 @@
+﻿@model FC.Models.Player
+
+@{
+    ViewBag.Title = "DetailsOfPlayer";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+    string address = "";
+    if (Model.Address != null)
+    {
+         address = Model.Address.ToString();
+    }
+    else
+    {
+        address = "Не вказана";
+    }
+}
+
+<h2>Деталі</h2>
+
+<fieldset>
+    <legend>Гравець</legend>
+    <table>
+        <tr>
+            <td style="font-weight: bold"> Ім'я:</td>  
+            <td>@Html.DisplayFor(model => model.PlayerName)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Пірзвище:</td>  
+            <td>@Html.DisplayFor(model => model.PlayerSurname)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Дата народження: </td>  
+            <td>@Html.DisplayFor(model => model.BirthdayDate)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Kоманда: </td>  
+            <td>@Html.DisplayFor(model => model.Team.TeamName)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Телефон: </td>  
+            <td>@Html.DisplayFor(model => model.PlayerPhone)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Адреса: </td>  
+            <td>@address</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Загальна кількість забитих голів: </td>  
+            <td>@ViewBag.TotalGoals</td>
+        </tr>
+
+    </table>
+</fieldset>
+<p>
+   |
+    @Html.ActionLink("Назад до списку", "ShowAllPlayers")
+</p>

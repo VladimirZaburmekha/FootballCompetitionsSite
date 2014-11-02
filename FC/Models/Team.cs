@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace FC.Models
 {
     using System;
@@ -23,6 +25,7 @@ namespace FC.Models
         }
     
         public int TeamId { get; set; }
+        [Required]
         public string TeamName { get; set; }
         public Nullable<int> AddressId { get; set; }
     

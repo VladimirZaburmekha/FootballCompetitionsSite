@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace FC.Models
 {
     using System;
@@ -15,7 +17,9 @@ namespace FC.Models
     public partial class Admin
     {
         public int AdminId { get; set; }
+        [Required]
         public string AdminLogin { get; set; }
+         [Required]
         public string MD5PasswordHash { get; set; }
     }
 }

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FC.Models.Address>
+
+<p>
+    @Html.ActionLink("Створити", "CreateAddress", new{controller="Addresses"})
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            Район
+        </th>
+        <th>
+            Населений пункт
+        </th>
+        <th>
+           Вулиця
+        </th>
+        <th>
+            Номер будинку
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Region)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuildingNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Змінити", "EditAddress", new {controller="Addresses", id=item.AddressId }) |
+           @* @Html.ActionLink("Details", "Details", new { id=item.AddressId }) |*@
+            @Html.ActionLink("видалити", "DeleteAddress", new {controller="Addresses", id=item.AddressId })
+        </td>
+    </tr>
+}
+
+</table>

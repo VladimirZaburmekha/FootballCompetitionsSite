@@ -1,0 +1,56 @@
+﻿@using System.Activities.Expressions
+@model FC.Models.Address
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Адреса</legend>
+
+        <div class="editor-label">
+           Регіон
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Region)
+            @Html.ValidationMessageFor(model => model.Region)
+        </div>
+
+        <div class="editor-label">
+           Населений пункт
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+
+        <div class="editor-label">
+            Вулиця
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Street)
+            @Html.ValidationMessageFor(model => model.Street)
+        </div>
+
+        <div class="editor-label">
+           Номер будинку
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BuildingNumber)
+            @Html.ValidationMessageFor(model => model.BuildingNumber)
+        </div>
+        <p>
+            <input type="submit" value="Створити" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Повернутися до списку адрес", "ShowAllAddresses",new{Controller="Addresses"})
+</div>

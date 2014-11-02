@@ -78,9 +78,9 @@
       <PropertyRef Name="CoachId" />
     </Key>
     <Property Name="CoachId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="CoachName" Type="nvarchar" MaxLength="50" />
-    <Property Name="CoachSurname" Type="nvarchar" MaxLength="50" />
-    <Property Name="BirthdayDate" Type="datetime" />
+    <Property Name="CoachName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CoachSurname" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BirthdayDate" Type="date" />
     <Property Name="AddressId" Type="int" />
     <Property Name="CoachPhone" Type="nvarchar" MaxLength="50" />
     <Property Name="TeamId" Type="int" />
@@ -99,7 +99,7 @@
       <PropertyRef Name="LeagueId" />
     </Key>
     <Property Name="LeagueId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="LeagueName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LeagueName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="LeagueDescription" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Matches">
@@ -107,22 +107,22 @@
       <PropertyRef Name="MatchId" />
     </Key>
     <Property Name="MatchId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="MatchName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatchName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Team1Id" Type="int" Nullable="false" />
     <Property Name="Team2Id" Type="int" Nullable="false" />
-    <Property Name="LeagueId" Type="int" />
+    <Property Name="LeagueId" Type="int" Nullable="false" />
     <Property Name="AddressId" Type="int" />
-    <Property Name="Date" Type="datetime" />
+    <Property Name="Date" Type="date" />
   </EntityType>
   <EntityType Name="Players">
     <Key>
       <PropertyRef Name="PlayerId" />
     </Key>
     <Property Name="PlayerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="PlayerName" Type="nvarchar" MaxLength="50" />
-    <Property Name="PlayerSurname" Type="nvarchar" MaxLength="50" />
-    <Property Name="BirthdayDate" Type="datetime" />
-    <Property Name="TeamId" Type="int" />
+    <Property Name="PlayerName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PlayerSurname" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BirthdayDate" Type="date" />
+    <Property Name="TeamId" Type="int" Nullable="false" />
     <Property Name="AddressId" Type="int" />
     <Property Name="PlayerPhone" Type="nvarchar" MaxLength="50" />
   </EntityType>
@@ -141,7 +141,7 @@
       <PropertyRef Name="TeamId" />
     </Key>
     <Property Name="TeamId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="TeamName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TeamName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="AddressId" Type="int" />
   </EntityType>
   <Association Name="FK_Coaches_Addresses">
@@ -205,7 +205,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Matches_Leagues">
-    <End Role="Leagues" Type="FootballCompetitionsModel.Store.Leagues" Multiplicity="0..1" />
+    <End Role="Leagues" Type="FootballCompetitionsModel.Store.Leagues" Multiplicity="1" />
     <End Role="Matches" Type="FootballCompetitionsModel.Store.Matches" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Leagues">
@@ -253,7 +253,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Players_Teams">
-    <End Role="Teams" Type="FootballCompetitionsModel.Store.Teams" Multiplicity="0..1" />
+    <End Role="Teams" Type="FootballCompetitionsModel.Store.Teams" Multiplicity="1" />
     <End Role="Players" Type="FootballCompetitionsModel.Store.Players" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Teams">

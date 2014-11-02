@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace FC.Models
 {
     using System;
@@ -15,7 +17,9 @@ namespace FC.Models
     public partial class Goal
     {
         public int GoalId { get; set; }
+        [Required]
         public int PlayerId { get; set; }
+        [Required]
         public int MatchId { get; set; }
         public Nullable<int> Minute { get; set; }
     

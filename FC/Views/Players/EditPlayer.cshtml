@@ -1,0 +1,89 @@
+﻿@model FC.Models.Player
+
+@{
+    ViewBag.Title = "EditPlayer";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
+
+<h2>Редагування гравця</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        
+        <legend></legend>
+        @Html.HiddenFor(model => model.AddressId)
+        @Html.HiddenFor(model => model.PlayerId)
+
+        <div class="editor-label">
+            Ім'я
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PlayerName)
+            @Html.ValidationMessageFor(model => model.PlayerName)
+        </div>
+
+        <div class="editor-label">
+            Прізвище
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PlayerSurname)
+            @Html.ValidationMessageFor(model => model.PlayerSurname)
+        </div>
+
+        <div class="editor-label">
+            Дата народження
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BirthdayDate).
+            @Html.ValidationMessageFor(model => model.BirthdayDate)
+        </div>
+
+        <div class="editor-label">
+            Команда
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.TeamId, ViewBag.Teams as SelectList)
+        </div>
+
+        <div class="editor-label">
+            Адреса
+        </div>
+        <div class="editor-field">
+                @Html.TextBox("street-name", (string)ViewBag.currentAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PlayerPhone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PlayerPhone)
+            @Html.ValidationMessageFor(model => model.PlayerPhone)
+        </div>
+
+        <p>
+            <input type="submit" value="Зберегти" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Назад до списку", "ShowAllPlayers")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/Scripts/jquery-ui-1.8.24.min.js")
+    <script type="text/javascript">
+        var AddressId = null;
+        $('#street-name').autocomplete({
+            source: '/Addresses/GetAddressesToAutocomplete',
+            minLength: 1,
+            select: function (event, ui) {
+                AddressId = ui.item.id;
+                $("#AddressId").val(AddressId);
+            }
+        });
+    </script>
+}

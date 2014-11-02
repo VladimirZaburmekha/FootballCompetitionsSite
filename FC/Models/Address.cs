@@ -32,5 +32,9 @@ namespace FC.Models
         public virtual ICollection<Match> Matches { get; set; }
         public virtual ICollection<Player> Players { get; set; }
         public virtual ICollection<Team> Teams { get; set; }
+        public override string ToString()
+        {
+            return this.Region + ", " + this.City + ", " + this.Street + ", " + this.BuildingNumber;
+        }
     }
 }

@@ -137,6 +137,7 @@
     <Compile Include="BootstrapSupport\HtmlHelpers\GlyphIcons.cs" />
     <Compile Include="BootstrapSupport\HtmlHelpers\Paging.cs" />
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
+    <Compile Include="Controllers\AddressesController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -262,6 +263,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CommonFunctions.js" />
     <Content Include="Scripts\html5shiv.js" />
     <EntityDeploy Include="Models\FCModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -289,6 +291,7 @@
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.autocomplete.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -329,6 +332,12 @@
     <Content Include="Views\Shared\PlayersTable.cshtml" />
     <Content Include="Views\Shared\tttttttt.cshtml" />
     <Content Include="Views\Players\ShowAllPlayers.cshtml" />
+    <Content Include="Views\Players\CreatePlayer.cshtml" />
+    <Content Include="Views\Addresses\ShowAllAddresses.cshtml" />
+    <Content Include="Views\Shared\AddressesTable.cshtml" />
+    <Content Include="Views\Shared\CreateAddress.cshtml" />
+    <Content Include="Views\Players\EditPlayer.cshtml" />
+    <Content Include="Views\Players\DetailsOfPlayer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
