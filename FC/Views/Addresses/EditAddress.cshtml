@@ -1,21 +1,22 @@
-﻿@using System.Activities.Expressions
-@model FC.Models.Address
+﻿@model FC.Models.Address
 
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@{
+    ViewBag.Title = "EditAddress";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
 
-
-
+<h2>Редагування адреси</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Адреса</legend>
+        <legend></legend>
+
+        @Html.HiddenFor(model => model.AddressId)
 
         <div class="editor-label">
-           Регіон
+            Район
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Region)
@@ -31,7 +32,7 @@
         </div>
 
         <div class="editor-label">
-            Вулиця
+           Вулиця
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Street)
@@ -45,12 +46,17 @@
             @Html.EditorFor(model => model.BuildingNumber)
             @Html.ValidationMessageFor(model => model.BuildingNumber)
         </div>
+
         <p>
-            <input type="submit" value="Створити" />
+            <input type="submit" value="Зберегти" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Повернутися до списку адрес", "ShowAllAddresses",new{Controller="Addresses"})
+    @Html.ActionLink("Назад до списку", "ShowAllAddresses")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

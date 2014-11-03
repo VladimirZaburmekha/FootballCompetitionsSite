@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace FC.Models
 {
     using System;
@@ -15,8 +17,12 @@ namespace FC.Models
     public partial class Coach
     {
         public int CoachId { get; set; }
+        [Required]
         public string CoachName { get; set; }
+        [Required]
         public string CoachSurname { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> BirthdayDate { get; set; }
         public Nullable<int> AddressId { get; set; }
         public string CoachPhone { get; set; }

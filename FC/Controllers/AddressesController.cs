@@ -19,11 +19,45 @@ namespace FC.Controllers
             var addresses=new BaseService<Address>(new FootballCompetitionsEntities()).GetAll().ToList();
             return View(addresses);
         }
+        //creating
+        [HttpGet]
         public ActionResult CreateAddress()
         {
-            return PartialView("CreateAddress");
+            return View("CreateAddress");
         }
+        [HttpPost]
+        public ActionResult CreateAddress(Address address)
+        {
+            var addressService = new BaseService<Address>(new FootballCompetitionsEntities());
+            addressService.Add(address);
+            return RedirectToAction("ShowAllAddresses");
+        }
+        //Editing
+        [HttpGet]
+        public ActionResult EditAddress(int? id)
+        {
+            if (id != null)
+            {
+                var address = new BaseService<Address>(new FootballCompetitionsEntities()).Find(a => a.AddressId == id);
+                if (address != null)
+                {
+                    return View(address);
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
 
+            }
+            else return HttpNotFound();
+        }
+        [HttpPost]
+        public ActionResult EditAddress(Address address)
+        {
+            var addressService = new BaseService<Address>(new FootballCompetitionsEntities());
+            addressService.Update(address, address.AddressId);
+            return RedirectToAction("ShowAllAddresses");
+        }
         public JsonResult GetAddressesToAutocomplete(string term)
         {
 
@@ -37,11 +71,25 @@ namespace FC.Controllers
                           }).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        
-        public ActionResult SelectAddress()
+        public ActionResult DeleteAddress(int? id)
         {
-            return View();
+            if (id != null)
+            {
+                var addressService = new BaseService<Address>(new FootballCompetitionsEntities());
+                var address = addressService.Find(a => a.AddressId == id);
+                if (address != null)
+                {
+                    addressService.Delete(address);
+                   return RedirectToAction("ShowAllAddresses");
+                }
+                else return HttpNotFound();
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
+       
 
     }
 }

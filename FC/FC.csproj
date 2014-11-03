@@ -139,6 +139,7 @@
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
+    <Compile Include="Controllers\CoachesController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
@@ -335,9 +336,14 @@
     <Content Include="Views\Players\CreatePlayer.cshtml" />
     <Content Include="Views\Addresses\ShowAllAddresses.cshtml" />
     <Content Include="Views\Shared\AddressesTable.cshtml" />
-    <Content Include="Views\Shared\CreateAddress.cshtml" />
     <Content Include="Views\Players\EditPlayer.cshtml" />
     <Content Include="Views\Players\DetailsOfPlayer.cshtml" />
+    <Content Include="Views\Addresses\CreateAddress.cshtml" />
+    <Content Include="Views\Addresses\EditAddress.cshtml" />
+    <Content Include="Views\Coaches\ShowAllCoaches.cshtml" />
+    <Content Include="Views\Coaches\EditCoach.cshtml" />
+    <Content Include="Views\Coaches\CreateCoach.cshtml" />
+    <Content Include="Views\Coaches\DetailsOfCoach.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

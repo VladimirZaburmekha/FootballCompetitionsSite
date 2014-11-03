@@ -1,0 +1,48 @@
+﻿@model FC.Models.Coach
+
+@{
+    ViewBag.Title = "DetailsOfCoach";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+    string address = "";
+    if (Model.Address != null)
+    {
+        address = Model.Address.ToString();
+    }
+    else {address = "Не вказана";}
+}
+
+<h2>Тренер</h2>
+
+<fieldset>
+    <legend></legend>
+    <table>
+        <tr>
+            <td style="font-weight: bold"> Ім'я:</td>  
+            <td>@Html.DisplayFor(model => model.CoachName)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Пірзвище:</td>  
+            <td>@Html.DisplayFor(model => model.CoachSurname)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Дата народження: </td>  
+            <td>@Html.DisplayFor(model => model.BirthdayDate)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Kоманда: </td>  
+            <td>@Html.DisplayFor(model => model.Team.TeamName)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Телефон: </td>  
+            <td>@Html.DisplayFor(model => model.CoachPhone)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Адреса: </td>  
+            <td>@address</td>
+        </tr>
+    </table>
+</fieldset>
+<p>
+   
+   @Html.ActionLink("Назад до списку", "ShowAllCoaches")
+</p>

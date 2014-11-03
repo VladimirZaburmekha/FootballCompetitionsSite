@@ -36,8 +36,8 @@
         </td>
         <td>
             @Html.ActionLink("Змінити", "EditAddress", new {controller="Addresses", id=item.AddressId }) |
-           @* @Html.ActionLink("Details", "Details", new { id=item.AddressId }) |*@
-            @Html.ActionLink("видалити", "DeleteAddress", new {controller="Addresses", id=item.AddressId })
+            @Html.ActionLink("Деталі", "Details", new { id=item.AddressId }) |
+            @Html.ActionLink("Видалити", "DeleteAddress", new {controller="Addresses", id=item.AddressId })
         </td>
     </tr>
 }

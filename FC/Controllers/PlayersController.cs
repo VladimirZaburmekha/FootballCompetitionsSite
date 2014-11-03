@@ -34,9 +34,9 @@ namespace FC.Controllers
         {
             var playerService = new BaseService<Player>(new FootballCompetitionsEntities());
             playerService.Add(player);
-            var items = new BaseService<Team>(new FootballCompetitionsEntities()).GetAll();
-            var teams = new SelectList(items, "TeamId", "TeamName");
-            ViewBag.Teams = teams;
+           // var items = new BaseService<Team>(new FootballCompetitionsEntities()).GetAll();
+           // var teams = new SelectList(items, "TeamId", "TeamName");
+           // ViewBag.Teams = teams;
             return RedirectToAction("ShowAllPlayers");
         }
         [HttpGet]
@@ -59,7 +59,7 @@ namespace FC.Controllers
                             a => a.AddressId == player.AddressId);
                     ViewBag.currentAddress = cAddress.Region + ", " + cAddress.City + ", " + cAddress.Street + ", " +
                                              cAddress.BuildingNumber;
-                }
+                }   
                 else ViewBag.currentAddress = null;
                 
                 return View(player);
@@ -71,8 +71,7 @@ namespace FC.Controllers
         {
             var playerService = new BaseService<Player>(new FootballCompetitionsEntities()).Update(player,id);
             return RedirectToAction("ShowAllPlayers");
-        }
-
+        }   
         public ActionResult DeletePlayer(int? id)
         {
             if (id != null)
@@ -87,13 +86,21 @@ namespace FC.Controllers
                 return PartialView("Error");
             }
         }
-
         [HttpGet]
         public ActionResult DetailsOfPlayer(int? id)
         {
-            var player = new BaseService<Player>(new FootballCompetitionsEntities()).Find(p=>p.PlayerId==id);
-            ViewBag.TotalGoals = new BaseService<Goal>(new FootballCompetitionsEntities()).FindAll(g => g.PlayerId == id).Count;
-            return View(player);
+            if (id != null)
+            {
+                var player = new BaseService<Player>(new FootballCompetitionsEntities()).Find(p => p.PlayerId == id);
+                if (player != null)
+                {
+                    ViewBag.TotalGoals =
+                        new BaseService<Goal>(new FootballCompetitionsEntities()).FindAll(g => g.PlayerId == id).Count;
+                    return View(player);
+                }
+                else return HttpNotFound();
+            }
+            else return HttpNotFound();
         }
 
     }

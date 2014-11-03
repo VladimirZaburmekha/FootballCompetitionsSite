@@ -1,0 +1,52 @@
+﻿@model IEnumerable<FC.Models.Coach>
+
+@{
+    ViewBag.Title = "ShowAllCoaches";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
+
+<h2>Всі тренери</h2>
+
+<p>
+    @Html.ActionLink("Створити", "CreateCoach")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+           Ім'я
+        </th>
+        <th>
+            Прізвище
+        </th>
+        <th>
+           Дата народження
+        </th>
+        <th>
+           Команда
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoachName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoachSurname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthdayDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team.TeamName)
+        </td>
+        <td>
+            @Html.ActionLink("Редагувати", "EditCoach", new { id=item.CoachId }) |
+            @Html.ActionLink("Деталі", "DetailsOfCoach", new { id=item.CoachId }) |
+            @Html.ActionLink("Видалити", "DeleteCoach", new { id=item.CoachId })
+        </td>
+    </tr>
+}
+
+</table>
