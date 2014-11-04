@@ -20,6 +20,26 @@ namespace FC.Controllers
             return View(coaches);
         }
 
+        public ActionResult ShowCoaches(string template)
+        {
+            var coachesService = new BaseService<Coach>(new FootballCompetitionsEntities());
+            if (string.IsNullOrEmpty(template))
+            {
+                var coaches = coachesService.GetAll().ToList();
+                return PartialView("CoachesTable", coaches);
+            }
+            else
+            {
+                var coaches = coachesService.GetAll().ToList();
+                var selectedCoaches=(from c in coaches where
+                                         c.CoachName.ToLower().Contains(template)||
+                                         c.CoachSurname.ToLower().Contains(template)||
+                                         c.Team.TeamName.ToLower().Contains(template)
+                                     select c).ToList();
+                return PartialView("CoachesTable", selectedCoaches);
+            }
+        }
+
         [HttpGet]
         public ActionResult CreateCoach()
         {

@@ -34,7 +34,14 @@ namespace FC.Models
         public virtual ICollection<Team> Teams { get; set; }
         public override string ToString()
         {
-            return this.Region + ", " + this.City + ", " + this.Street + ", " + this.BuildingNumber;
+            if (this != null)
+            {
+                return this.Region + ", " + this.City + ", " + this.Street + ", " + this.BuildingNumber;
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }

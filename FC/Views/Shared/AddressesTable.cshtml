@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<FC.Models.Address>
-
-<p>
-    @Html.ActionLink("Створити", "CreateAddress", new{controller="Addresses"})
-</p>
-<table class="table table-striped">
+<tbody>
     <tr>
         <th>
             Район
@@ -36,10 +32,8 @@
         </td>
         <td>
             @Html.ActionLink("Змінити", "EditAddress", new {controller="Addresses", id=item.AddressId }) |
-            @Html.ActionLink("Деталі", "Details", new { id=item.AddressId }) |
             @Html.ActionLink("Видалити", "DeleteAddress", new {controller="Addresses", id=item.AddressId })
         </td>
     </tr>
 }
-
-</table>
+    </tbody>

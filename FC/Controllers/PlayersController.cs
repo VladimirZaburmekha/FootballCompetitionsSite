@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations.Builders;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
+using System.Web.UI.WebControls;
 using FC.Models;
 using FC.Services;
 
@@ -14,12 +16,32 @@ namespace FC.Controllers
     {
         //
         // GET: /Players/
-
         public ActionResult ShowAllPlayers()
-       {
-            var playerService=new BaseService<Player>(new FootballCompetitionsEntities());
+        {
+            var playerService = new BaseService<Player>(new FootballCompetitionsEntities());
             var playerList = playerService.GetAll();
             return View(playerList);
+        }
+        public ActionResult ShowPlayers(string template )
+       {
+           var playerService = new BaseService<Player>(new FootballCompetitionsEntities());
+           
+            if (string.IsNullOrEmpty(template))
+            {
+                var playerList = playerService.GetAll().ToList();
+                return PartialView("PlayersTable", playerList);
+            }
+            else
+            {
+                var playerList = playerService.GetAll().ToList();
+                var selectedPlayers = (from p in playerList
+                    where
+                        p.PlayerName.ToLower().Contains(template.ToLower()) ||
+                        p.PlayerSurname.ToLower().Contains(template.ToLower()) ||
+                       p.Team.TeamName.ToLower().Contains(template.ToLower())
+                    select p).ToList();
+                return PartialView("PlayersTable",selectedPlayers);
+            }
        }
         [HttpGet]
         public ActionResult CreatePlayer()

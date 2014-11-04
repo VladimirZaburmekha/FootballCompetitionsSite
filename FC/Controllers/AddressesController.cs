@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.HtmlControls;
@@ -18,6 +19,29 @@ namespace FC.Controllers
         {
             var addresses=new BaseService<Address>(new FootballCompetitionsEntities()).GetAll().ToList();
             return View(addresses);
+        }
+
+        public ActionResult ShowAddresses(string template)
+        {
+            var addressService = new BaseService<Address>(new FootballCompetitionsEntities());
+            if (string.IsNullOrEmpty(template))
+            {
+                var addresses = addressService.GetAll().ToList();
+                return PartialView("AddressesTable", addresses);
+            }
+            else
+            {
+                var addresses = addressService.GetAll();
+                var selectedAddresses = (from a in addresses
+                    where
+                       (a.BuildingNumber!=null && a.BuildingNumber.ToLower().Contains(template.ToLower())) ||
+                       (a.Street!=null && a.Street.ToLower().Contains(template.ToLower())) ||
+                       (a.City!=null && a.City.ToLower().Contains(template.ToLower())) ||
+                       (a.Region!=null && a.Region.ToLower().Contains(template.ToLower()))
+                    select a
+                    ).ToList();
+                return PartialView("AddressesTable", selectedAddresses);
+            }
         }
         //creating
         [HttpGet]
@@ -63,11 +87,16 @@ namespace FC.Controllers
 
             var projects = new BaseService<Address>(new FootballCompetitionsEntities()).GetAll();
             var result = (from p in projects
-                          where p.Street.ToLower().Contains(term.ToLower()) 
+                          where (
+                          p.Region!=null && p.Region.ToLower().Contains(term.ToLower())||
+                          p.City!=null && p.City.ToLower().Contains(term.ToLower())||
+                          p.Street!=null && p.Street.ToLower().Contains(term.ToLower())||
+                          p.BuildingNumber!=null && p.BuildingNumber.ToLower().Contains(term.ToLower())
+                          )
                           select new
                           {
                               id = p.AddressId,
-                              value = p.Region+", "+p.City+", "+p.Street+", "+p.BuildingNumber,
+                              value = p.ToString()
                           }).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }

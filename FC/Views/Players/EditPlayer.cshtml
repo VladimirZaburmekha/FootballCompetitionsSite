@@ -51,7 +51,7 @@
             Адреса
         </div>
         <div class="editor-field">
-                @Html.TextBox("street-name", (string)ViewBag.currentAddress)
+                @Html.TextBox("address-search", (string)ViewBag.currentAddress)
         </div>
 
         <div class="editor-label">
@@ -75,15 +75,20 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/Scripts/jquery-ui-1.8.24.min.js")
-    <script type="text/javascript">
-        var AddressId = null;
-        $('#street-name').autocomplete({
-            source: '/Addresses/GetAddressesToAutocomplete',
-            minLength: 1,
-            select: function (event, ui) {
-                AddressId = ui.item.id;
-                $("#AddressId").val(AddressId);
-            }
-        });
+     <script type="text/javascript">
+         var AddressId = null;
+         $('#address-search').autocomplete({
+             source: '/Addresses/GetAddressesToAutocomplete',
+             minLength: 1,
+             select: function (event, ui) {
+                 AddressId = ui.item.id;
+                 $("#AddressId").val(AddressId);
+             }
+         });
+         $('#address-search').on('input', function () {
+             if ($('#address-search').val() == "") {
+                 $("#AddressId").val("");
+             }
+         });
     </script>
 }

@@ -4,4 +4,25 @@
 }
 
 <h2>Всі адреси</h2>
-@Html.Partial("AddressesTable")
+<p>
+    @Html.ActionLink("Створити", "CreateAddress", new{controller="Addresses"})
+</p>
+<div class="editor-field">
+         <div><input name="search-input" type="text" id="search"/></div>
+</div>
+<table id="address-table"class="table table-striped">
+    @Html.Partial("AddressesTable")
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/CommonFunctions.js")
+@Scripts.Render("~/Scripts/jquery-2.1.1.js")
+    <script type="text/javascript">
+        
+        $('#search').change(function () {
+            var template = $('#search').val();
+            var URL = '/Addresses/ShowAddresses/' + template;
+            RenderPartial(URL, '#address-table');
+        });
+    </script>
+}

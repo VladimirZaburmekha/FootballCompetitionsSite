@@ -143,6 +143,7 @@
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -288,6 +289,7 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
@@ -344,6 +346,11 @@
     <Content Include="Views\Coaches\EditCoach.cshtml" />
     <Content Include="Views\Coaches\CreateCoach.cshtml" />
     <Content Include="Views\Coaches\DetailsOfCoach.cshtml" />
+    <Content Include="Views\Shared\CoachesTable.cshtml" />
+    <Content Include="Views\Shared\TeamsTable.cshtml" />
+    <Content Include="Views\Teams\ShowAllTeams.cshtml" />
+    <Content Include="Views\Teams\CreateTeam.cshtml" />
+    <Content Include="Views\Teams\EditTeam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

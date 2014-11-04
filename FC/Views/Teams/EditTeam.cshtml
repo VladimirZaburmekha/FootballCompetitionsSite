@@ -1,0 +1,63 @@
+﻿@model FC.Models.Team
+
+@{
+    ViewBag.Title = "EditTeam";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
+
+<h2>Редагування команди</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Team</legend>
+
+        @Html.HiddenFor(model => model.TeamId)
+        @Html.HiddenFor(model=>model.AddressId)
+
+        <div class="editor-label">
+            Назва
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TeamName)
+            @Html.ValidationMessageFor(model => model.TeamName)
+        </div>
+
+        <div class="editor-label">
+            Адреса реєстрації
+        </div>
+        <div class="editor-field">
+             @Html.TextBox("address-serach", (string)ViewBag.currentAddress)
+        </div>
+
+        <p>
+            <input type="submit" value="Зберегти" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Назад до списку", "ShowAllTeams")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/Scripts/jquery-ui-1.8.24.min.js")
+    <script type="text/javascript">
+        var AddressId = null;
+        $('#address-serach').autocomplete({
+            source: '/Addresses/GetAddressesToAutocomplete',
+            minLength: 1,
+            select: function (event, ui) {
+                AddressId = ui.item.id;
+                $("#AddressId").val(AddressId);
+            }
+        });
+        $('#address-serach').on('input', function () {
+            if ($('#address-serach').val() == "") {
+                $("#AddressId").val("");
+            }
+        });
+    </script>
+}

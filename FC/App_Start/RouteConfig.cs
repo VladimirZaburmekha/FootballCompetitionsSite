@@ -12,17 +12,27 @@ namespace FC
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-          /*  routes.MapRoute(
-             "Players",
-             "players",
-             new { controller = "PlayersController", action = "ShowAllPlayers" }
+            routes.MapRoute(
+                "ShowTeams",
+                "Teams/ShowTeams/{template}",
+                new {controller = "Teams", action = "ShowTeams", template = UrlParameter.Optional}
+                );
+            routes.MapRoute(
+             "ShowCoaches",
+             "Coaches/ShowCoaches/{template}",
+             new { controller = "Coaches", action = "ShowCoaches", template = UrlParameter.Optional }
+           );
+           routes.MapRoute(
+             "ShowAddresses",
+             "Addresses/ShowAddresses/{template}",
+             new { controller = "Addresses", action = "ShowAddresses", template = UrlParameter.Optional }
            );
             routes.MapRoute(
-                "EditPlayer",
-               "Players/EditPlayer/{id}",
-               new { controller = "PlayersController", action = "CreatePlayer",id="{id}" }
+                "ShowPlayer",
+               "Players/ShowPlayers/{template}",
+               new { controller = "Players", action = "ShowPlayers",template=UrlParameter.Optional }
 
-            );*/
+            );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

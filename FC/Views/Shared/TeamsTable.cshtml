@@ -1,0 +1,42 @@
+﻿@using System.Activities.Expressions
+@model IEnumerable<FC.Models.Team>
+<tbody>
+    <tr>
+        <th>
+           Назва
+        </th>
+        <th>
+            Місце реєстрації
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    var address = "";
+    if(item.Address!=null)
+    {
+         address = item.Address.ToString();
+
+    }
+    else
+    {
+        address = "Не зазаначено";
+    }
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamName)
+        </td>
+        <td>
+           @address
+            
+        </td>
+        <td>
+            @Html.ActionLink("Змінити", "EditTeam", new { id=item.TeamId }) |
+            @Html.ActionLink("Деталі", "DetailsOfTeam", new { id=item.TeamId }) |
+            @Html.ActionLink("Видалити", "DeleteTeam", new { id=item.TeamId })
+        </td>
+    </tr>
+}
+</tbody>
+
