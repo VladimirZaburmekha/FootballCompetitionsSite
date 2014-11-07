@@ -142,6 +142,7 @@
     <Compile Include="Controllers\CoachesController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaguesController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -351,6 +352,7 @@
     <Content Include="Views\Teams\ShowAllTeams.cshtml" />
     <Content Include="Views\Teams\CreateTeam.cshtml" />
     <Content Include="Views\Teams\EditTeam.cshtml" />
+    <Content Include="Views\Teams\DetailsOfTeam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

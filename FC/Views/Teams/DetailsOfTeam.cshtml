@@ -1,0 +1,56 @@
+﻿@using FC.Models
+@model FC.Models.Team
+
+@{
+    ViewBag.Title = "DetailsOfTeam";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
+@{
+    var address = "";
+    if (Model.Address != null)
+    {
+        address = Model.Address.ToString();
+    }
+    else
+    {
+        address = "не зазначено";
+    }
+}
+<h2>Деталі</h2>
+
+<fieldset>
+    <legend>Команда</legend>
+    <table>
+        <tr>
+            <td style="font-weight: bold"> Назва:</td>  
+            <td>@Html.DisplayFor(model => model.TeamName)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold">Місце реєстрації</td>  
+            <td>@address</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Кількість перемог: </td>  
+            <td>@ViewBag.totalWins</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Кількість ігор, зіграних в нічию: </td>  
+            <td>@ViewBag.totalDraws</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Кількість програшів: </td>  
+            <td>@ViewBag.totalLose</td>
+        </tr>
+    </table>
+</fieldset>
+<h4>Тренери</h4>
+<table id="coaches-table"class="table table-striped">
+    @Html.Partial("CoachesTable",(ViewBag.Coaches as IEnumerable<Coach>))
+</table>
+<h4>Гравці</h4>
+<table id="players-table"class="table table-striped">
+@Html.Partial("PlayersTable",(ViewBag.Players as IEnumerable<Player>))
+</table>
+<p>
+    @Html.ActionLink("Назад до списку", "ShowAllTeams")
+</p>
