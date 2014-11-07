@@ -23,7 +23,7 @@ namespace FC.Models
         public string MatchName { get; set; }
         public int Team1Id { get; set; }
         public int Team2Id { get; set; }
-        public int LeagueId { get; set; }
+        public Nullable<int> LeagueId { get; set; }
         public Nullable<int> AddressId { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
     

@@ -13,6 +13,16 @@ namespace FC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
+            "ShowMatches",
+            "Matches/ShowMatches/{template}",
+            new { controller = "Matches", action = "ShowMatches", template = UrlParameter.Optional }
+          );
+            routes.MapRoute(
+             "ShowLeagues",
+             "Leagues/ShowLeagues/{template}",
+             new { controller = "Leagues", action = "ShowLeagues", template = UrlParameter.Optional }
+           );
+            routes.MapRoute(
                 "ShowTeams",
                 "Teams/ShowTeams/{template}",
                 new {controller = "Teams", action = "ShowTeams", template = UrlParameter.Optional}

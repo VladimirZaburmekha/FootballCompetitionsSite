@@ -1,0 +1,44 @@
+﻿@model FC.Models.League
+
+@{
+    ViewBag.Title = "CreateLeague";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
+
+<h2>Створення ліги</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Ліга</legend>
+
+        <div class="editor-label">
+            Назва
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LeagueName)
+            @Html.ValidationMessageFor(model => model.LeagueName)
+        </div>
+
+        <div class="editor-label">
+            Опис
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LeagueDescription)
+            @Html.ValidationMessageFor(model => model.LeagueDescription)
+        </div>
+
+        <p>
+            <input type="submit" value="Створити" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Назад до списку", "ShowAllLeagues")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

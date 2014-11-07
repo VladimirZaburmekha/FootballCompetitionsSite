@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace FC.Models
 {
     using System;
@@ -20,6 +22,7 @@ namespace FC.Models
         }
     
         public int LeagueId { get; set; }
+        [Required]
         public string LeagueName { get; set; }
         public string LeagueDescription { get; set; }
     

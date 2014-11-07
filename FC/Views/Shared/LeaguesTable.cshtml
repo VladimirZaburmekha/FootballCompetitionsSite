@@ -1,0 +1,29 @@
+﻿@model IEnumerable<FC.Models.League>
+
+
+<tbody>
+    <tr>
+        <th>
+            Назва
+        </th>
+        <th>
+            Опис
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeagueName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeagueDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Змінити", "EditLeague", new { id=item.LeagueId }) |
+            @Html.ActionLink("Видалити", "DeleteLeague", new { id=item.LeagueId })
+        </td>
+    </tr>
+}
+</tbody>

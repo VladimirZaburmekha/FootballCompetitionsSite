@@ -1,0 +1,71 @@
+﻿@using System.Runtime.InteropServices
+@using System.Text
+@model IEnumerable<FC.Models.Match>
+
+
+<tbody>
+    <tr>
+        <th>
+            Назва
+        </th>
+        <th>
+            Команда
+        </th>
+        <th>
+            Команда
+        </th>
+        <th>
+            Ліга
+        </th>
+        <th>
+            Місце проведення
+        </th>
+        <th>
+            Дата
+        </th>
+        <th>
+            Рахунок
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    
+    var address = "";
+    if (item.Address != null)
+    {
+        address = item.Address.ToString();
+    }
+    else
+    {
+        address = "Не зазначено";
+    }
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MatchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team.TeamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team1.TeamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.League.LeagueName)
+        </td>
+        <td>
+            @address
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditMatch", new { id=item.MatchId }) |
+            @Html.ActionLink("Details", "DetailsOfMatch", new { id=item.MatchId }) |
+            @Html.ActionLink("Delete", "DeleteMatch", new { id=item.MatchId })
+        </td>
+    </tr>
+}
+</tbody>
+

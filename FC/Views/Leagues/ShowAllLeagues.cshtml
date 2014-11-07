@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "ShowAllLeagues";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
+
+<h2>Ліги</h2>
+<p>
+    @Html.ActionLink("Створити", "CreateLeague")
+</p>
+<div class="editor-field">
+         <div><input name="search-input" type="text" id="search"/></div>
+</div>
+<table id="leagues-table"class="table table-striped">
+@Html.Partial("LeaguesTable")
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/CommonFunctions.js")
+@Scripts.Render("~/Scripts/jquery-2.1.1.js")
+    <script type="text/javascript">
+        
+        $('#search').change(function () {
+            var template = $('#search').val();
+            var URL = '/Leagues/ShowLeagues/' + template;
+            RenderPartial(URL, '#leagues-table');
+        });
+    </script>
+}
