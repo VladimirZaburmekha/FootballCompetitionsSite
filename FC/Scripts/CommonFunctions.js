@@ -9,3 +9,14 @@
 });
 }
 
+/*$(".delete-goal-button").click(function () {
+    $.ajax({
+        type: "GET",
+        url: "/Goal/DeleteGoal/"+ $(this).attr("id"),
+        success: function (data) {
+            $('#goals-table').html(data);
+        }
+    });
+});
+*/
+        

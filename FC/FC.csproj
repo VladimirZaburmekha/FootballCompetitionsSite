@@ -141,6 +141,7 @@
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\CoachesController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
+    <Compile Include="Controllers\GoalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaguesController.cs" />
     <Compile Include="Controllers\MatchesController.cs" />
@@ -360,6 +361,10 @@
     <Content Include="Views\Leagues\EditLeague.cshtml" />
     <Content Include="Views\Matches\ShowAllMatches.cshtml" />
     <Content Include="Views\Shared\MatchesTable.cshtml" />
+    <Content Include="Views\Matches\CreateMatch.cshtml" />
+    <Content Include="Views\Matches\EditMatch.cshtml" />
+    <Content Include="Views\Shared\GoalsTable.cshtml" />
+    <Content Include="Views\Matches\DetailsOfMatch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

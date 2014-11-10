@@ -28,7 +28,7 @@
         </th>
         <th></th>
     </tr>
-
+@{ int i = 0; }
 @foreach (var item in Model) {
     
     var address = "";
@@ -36,10 +36,7 @@
     {
         address = item.Address.ToString();
     }
-    else
-    {
-        address = "Не зазначено";
-    }
+   
 
     <tr>
         <td>
@@ -61,11 +58,15 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditMatch", new { id=item.MatchId }) |
-            @Html.ActionLink("Details", "DetailsOfMatch", new { id=item.MatchId }) |
-            @Html.ActionLink("Delete", "DeleteMatch", new { id=item.MatchId })
+            @ViewBag.matchScores[i]
+        </td>
+        <td>
+            @Html.ActionLink("Редагувати", "EditMatch", new { id=item.MatchId }) |
+            @Html.ActionLink("Деталі", "DetailsOfMatch", new { id=item.MatchId }) |
+            @Html.ActionLink("Видалити", "DeleteMatch", new { id=item.MatchId })
         </td>
     </tr>
+    i++;
 }
 </tbody>
 

@@ -12,6 +12,11 @@ namespace FC
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+           /* routes.MapRoute(
+            "GetPlayersToAutocomplete",
+            "Players/GetPlayersToAutoComplete/{term}",
+            new { controller = "Players", action = "GetPlayersToAutoComplete", template = UrlParameter.Optional }
+          );*/
             routes.MapRoute(
             "ShowMatches",
             "Matches/ShowMatches/{template}",

@@ -1,0 +1,53 @@
+﻿@using FC.Models
+@model FC.Models.Match
+
+@{
+    ViewBag.Title = "DetailsOfMatch";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
+
+<h2>Деталі</h2>
+
+<fieldset>
+    <legend></legend>
+    @{
+        var address = "Не зазначено";
+        if (Model.Address != null)
+        {
+            address = Model.Address.ToString();
+        }
+    }
+    <table>
+        <tr>
+            <td style="font-weight: bold"> Назва:</td>  
+            <td>@Html.DisplayFor(model => model.MatchName)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Команда:</td>  
+            <td> @Html.DisplayFor(model => model.Team.TeamName)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Команда: </td>  
+            <td>@Html.DisplayFor(model => model.Team1.TeamName)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Ліга: </td>  
+            <td>@Html.DisplayFor(model => model.League.LeagueName)</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Місце проведення: </td>  
+            <td>@address</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold"> Дата проведення: </td>  
+            <td>@Html.DisplayFor(model => model.Date)</td>
+        </tr>
+    </table>
+</fieldset>
+    <h4>Голи</h4>
+<table id="goals-table" class="table table-striped">
+@Html.Partial("GoalsTable",ViewBag.Goals as IEnumerable<Goal>)    
+</table>
+<p>
+    @Html.ActionLink("Назад до списку", "ShowAllMatches")
+</p>

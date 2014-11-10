@@ -89,9 +89,9 @@ namespace FC.Controllers
             return RedirectToAction("ShowAllPlayers");
         }
         [HttpPost]
-        public ActionResult EditPlayer(Player player,int id)
+        public ActionResult EditPlayer(Player player)
         {
-            var playerService = new BaseService<Player>(new FootballCompetitionsEntities()).Update(player,id);
+            var playerService = new BaseService<Player>(new FootballCompetitionsEntities()).Update(player,player.PlayerId);
             return RedirectToAction("ShowAllPlayers");
         }   
         public ActionResult DeletePlayer(int? id)
@@ -123,6 +123,19 @@ namespace FC.Controllers
                 else return HttpNotFound();
             }
             else return HttpNotFound();
+        }
+        [HttpGet]
+        public JsonResult GetPlayersToAutoComplete(string term, int team1Id, int team2Id)
+        {
+            var players = new BaseService<Player>(new FootballCompetitionsEntities()).FindAll(p=>p.TeamId==team1Id|| p.TeamId==team2Id);
+            var selectedPlayers = (from p in players
+                where
+                    (p.PlayerName.ToLower().Contains(term.ToLower())) ||
+                    (p.PlayerSurname.ToLower().Contains(term.ToLower())) ||
+                    (p.Team != null && p.Team.TeamName.ToLower().Contains(term.ToLower()))
+                select new{id=p.PlayerId,value=p.ToString()}
+                ).ToList();
+            return Json(selectedPlayers, JsonRequestBehavior.AllowGet);
         }
 
     }

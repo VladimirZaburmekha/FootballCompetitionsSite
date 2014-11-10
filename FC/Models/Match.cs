@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace FC.Models
 {
     using System;
@@ -25,6 +27,8 @@ namespace FC.Models
         public int Team2Id { get; set; }
         public Nullable<int> LeagueId { get; set; }
         public Nullable<int> AddressId { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Address Address { get; set; }

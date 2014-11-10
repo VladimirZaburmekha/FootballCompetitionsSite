@@ -36,5 +36,9 @@ namespace FC.Models
         public virtual Address Address { get; set; }
         public virtual ICollection<Goal> Goals { get; set; }
         public virtual Team Team { get; set; }
+        public override string ToString()
+        {
+            return this.PlayerName +" "+ this.PlayerSurname;
+        }
     }
 }

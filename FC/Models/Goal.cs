@@ -25,5 +25,15 @@ namespace FC.Models
     
         public virtual Match Match { get; set; }
         public virtual Player Player { get; set; }
+
+      /*  public Goal(int matchId, int playerId, int? minute)
+        {
+            this.MatchId = matchId;
+            this.PlayerId = playerId;
+            if (minute != null)
+            {
+                this.Minute = minute;
+            }
+        }*/
     }
 }
