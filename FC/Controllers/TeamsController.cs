@@ -41,12 +41,13 @@ namespace FC.Controllers
                 return PartialView("TeamsTable", selectedTeams);
             }
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult CreateTeam()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public ActionResult CreateTeam(Team team)
         {
@@ -54,7 +55,7 @@ namespace FC.Controllers
             teamsService.Add(team);
             return RedirectToAction("ShowAllTeams");
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult EditTeam(int? id)
         {
@@ -78,7 +79,7 @@ namespace FC.Controllers
             }
             else return View("Error");
         }
-
+        [Authorize]
         [HttpPost]
         public ActionResult EditTeam(Team team)
         {
@@ -139,7 +140,7 @@ namespace FC.Controllers
             }
             else return View("Error");
         }
-
+        [Authorize]
         public ActionResult DeleteTeam(int? id)
         {
             if (id != null)

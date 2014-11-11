@@ -43,6 +43,7 @@ namespace FC.Controllers
                 return PartialView("PlayersTable",selectedPlayers);
             }
        }
+        [Authorize]
         [HttpGet]
         public ActionResult CreatePlayer()
         {
@@ -51,6 +52,7 @@ namespace FC.Controllers
             ViewBag.Teams = teams;
             return View();
         }
+        [Authorize]
         [HttpPost]
         public ActionResult CreatePlayer(Player player)
         {
@@ -61,6 +63,7 @@ namespace FC.Controllers
            // ViewBag.Teams = teams;
             return RedirectToAction("ShowAllPlayers");
         }
+        [Authorize]
         [HttpGet]
         public ActionResult EditPlayer(int? id)
         {
@@ -88,12 +91,14 @@ namespace FC.Controllers
             }
             return RedirectToAction("ShowAllPlayers");
         }
+        [Authorize]
         [HttpPost]
         public ActionResult EditPlayer(Player player)
         {
             var playerService = new BaseService<Player>(new FootballCompetitionsEntities()).Update(player,player.PlayerId);
             return RedirectToAction("ShowAllPlayers");
-        }   
+        }
+        [Authorize]
         public ActionResult DeletePlayer(int? id)
         {
             if (id != null)
@@ -108,6 +113,7 @@ namespace FC.Controllers
                 return PartialView("Error");
             }
         }
+        [Authorize]
         [HttpGet]
         public ActionResult DetailsOfPlayer(int? id)
         {

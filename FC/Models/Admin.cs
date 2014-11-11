@@ -20,6 +20,6 @@ namespace FC.Models
         [Required]
         public string AdminLogin { get; set; }
          [Required]
-        public string MD5PasswordHash { get; set; }
+        public string Password { get; set; }
     }
 }

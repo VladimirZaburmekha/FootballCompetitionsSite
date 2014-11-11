@@ -75,7 +75,7 @@
     </Key>
     <Property Name="AdminId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="AdminLogin" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="MD5PasswordHash" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
   </EntityType>
   <EntityType Name="Coach">
     <Key>

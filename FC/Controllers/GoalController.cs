@@ -13,7 +13,7 @@ namespace FC.Controllers
     {
         //
         // GET: /Goal/
-
+        [Authorize]
         public ActionResult AddGoal(int? matchId,int? playerId,int? minute)
         {
             if (matchId == null || playerId == null)
@@ -39,7 +39,7 @@ namespace FC.Controllers
             }
             
         }
-
+        [Authorize]
         public ActionResult DeleteGoal(int? id)
         {
             if (id == null)
@@ -66,7 +66,7 @@ namespace FC.Controllers
                 }
             }
         }
-
+        [Authorize]
         public ActionResult GetGoalsPerMatch(int? matchId)
         {
             if (matchId != null)

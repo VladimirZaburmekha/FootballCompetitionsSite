@@ -1,0 +1,48 @@
+﻿@model FC.Models.Admin
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_BootstrapLayout.basic.cshtml";
+}
+
+<h2>Вхід</h2>
+
+@if (ViewBag.Error != null) 
+        { 
+            <p class="error">Html.Raw(ViewBag.Error)</p>
+        }
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        
+        <div class="editor-label">
+            Логін
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdminLogin)
+            @Html.ValidationMessageFor(model => model.AdminLogin)
+        </div>
+
+        <div class="editor-label">
+            Пароль
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <p>
+            <input type="submit" value="Увійти" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

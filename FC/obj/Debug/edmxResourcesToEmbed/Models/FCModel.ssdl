@@ -71,7 +71,7 @@
     </Key>
     <Property Name="AdminId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="AdminLogin" Type="nvarchar" MaxLength="50" />
-    <Property Name="MD5PasswordHash" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Coaches">
     <Key>

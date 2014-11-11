@@ -39,7 +39,7 @@ namespace FC.Controllers
                 return PartialView("CoachesTable", selectedCoaches);
             }
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult CreateCoach()
         {
@@ -48,7 +48,7 @@ namespace FC.Controllers
             ViewBag.Teams = teams;
             return View();
         }
-
+        [Authorize]
         [HttpPost]
         public ActionResult CreateCoach(Coach coach)
         {
@@ -56,6 +56,7 @@ namespace FC.Controllers
             coachService.Add(coach);
             return RedirectToAction("ShowAllCoaches");
         }
+        [Authorize]
         [HttpGet]
         public ActionResult EditCoach(int? id)
         {
@@ -91,6 +92,7 @@ namespace FC.Controllers
                 return HttpNotFound();
             }
         }
+        [Authorize]
         [HttpPost]
         public ActionResult EditCoach(Coach coach)
         {
@@ -98,6 +100,7 @@ namespace FC.Controllers
             coachService.Update(coach, coach.CoachId);
             return RedirectToAction("ShowAllCoaches");
         }
+        [Authorize]
         [HttpGet]
         public ActionResult DetailsOfCoach(int? id)
         {
@@ -112,7 +115,7 @@ namespace FC.Controllers
             }
             return HttpNotFound();
         }
-
+        [Authorize]
         public ActionResult DeleteCoach(int? id)
         {
             if (id != null)

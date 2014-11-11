@@ -39,11 +39,13 @@ namespace FC.Controllers
             }
         }
         //CREATE
+        [Authorize]
         [HttpGet]
         public ActionResult CreateLeague()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public ActionResult CreateLeague(League league)
         {
@@ -52,6 +54,7 @@ namespace FC.Controllers
             return RedirectToAction("ShowAllLeagues");
         }
         //EDIT
+        [Authorize]
         [HttpGet]
         public ActionResult EditLeague(int? id)
         {
@@ -72,6 +75,7 @@ namespace FC.Controllers
                 return PartialView("Error");
             }
         }
+        [Authorize]
         [HttpPost]
         public ActionResult EditLeague(League league)
         {
@@ -80,6 +84,7 @@ namespace FC.Controllers
             return RedirectToAction("ShowAllLeagues");
         }
         //Delete
+        [Authorize]
         [HttpGet]
         public ActionResult DeleteLeague(int? id)
         {

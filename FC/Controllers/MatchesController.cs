@@ -62,6 +62,7 @@ namespace FC.Controllers
             }
         }
         //Creating
+        [Authorize]
         [HttpGet]
         public ActionResult CreateMatch()
         {
@@ -73,6 +74,7 @@ namespace FC.Controllers
             ViewBag.Leagues = leagues;
             return View();
         }
+        [Authorize]
         [HttpPost]
         public ActionResult CreateMatch(Match match)
         {
@@ -80,7 +82,9 @@ namespace FC.Controllers
             matchService.Add(match);
             return RedirectToAction("ShowAllMatches");
         }
+        [Authorize]
         //EDITING
+        [Authorize]
         [HttpGet]
         public ActionResult EditMatch(int? id)
         {
@@ -107,6 +111,7 @@ namespace FC.Controllers
             }
             else return PartialView("Error");
         }
+        [Authorize]
         [HttpPost]
         public ActionResult EditMatch(Match match)
         {
@@ -140,7 +145,7 @@ namespace FC.Controllers
                 return HttpNotFound();
             }
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult DeleteMatch(int? id)
         {

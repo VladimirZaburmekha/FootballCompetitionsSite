@@ -17,7 +17,7 @@
         <MappingFragment StoreEntitySet="Admins">
           <ScalarProperty Name="AdminId" ColumnName="AdminId" />
           <ScalarProperty Name="AdminLogin" ColumnName="AdminLogin" />
-          <ScalarProperty Name="MD5PasswordHash" ColumnName="MD5PasswordHash" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -44,11 +44,13 @@ namespace FC.Controllers
             }
         }
         //creating
+        [Authorize]
         [HttpGet]
         public ActionResult CreateAddress()
         {
             return View("CreateAddress");
         }
+        [Authorize]
         [HttpPost]
         public ActionResult CreateAddress(Address address)
         {
@@ -57,6 +59,7 @@ namespace FC.Controllers
             return RedirectToAction("ShowAllAddresses");
         }
         //Editing
+        [Authorize]
         [HttpGet]
         public ActionResult EditAddress(int? id)
         {
@@ -75,6 +78,7 @@ namespace FC.Controllers
             }
             else return HttpNotFound();
         }
+        [Authorize]
         [HttpPost]
         public ActionResult EditAddress(Address address)
         {
@@ -100,6 +104,7 @@ namespace FC.Controllers
                           }).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        [Authorize]
         public ActionResult DeleteAddress(int? id)
         {
             if (id != null)
