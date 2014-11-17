@@ -20,7 +20,7 @@ namespace FC.Models
         {
             this.Goals = new HashSet<Goal>();
         }
-    
+
         public int PlayerId { get; set; }
         [Required]
         public string PlayerName { get; set; }
@@ -32,13 +32,13 @@ namespace FC.Models
         public int TeamId { get; set; }
         public Nullable<int> AddressId { get; set; }
         public string PlayerPhone { get; set; }
-    
+
         public virtual Address Address { get; set; }
         public virtual ICollection<Goal> Goals { get; set; }
         public virtual Team Team { get; set; }
         public override string ToString()
         {
-            return this.PlayerName +" "+ this.PlayerSurname;
+            return this.PlayerName + " " + this.PlayerSurname;
         }
     }
 }

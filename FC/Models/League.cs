@@ -18,7 +18,7 @@ namespace FC.Models
     {
         public League()
         {
-            this.Matches = new HashSet<Match>();
+            this.Teams = new HashSet<Team>();
         }
     
         public int LeagueId { get; set; }
@@ -26,6 +26,6 @@ namespace FC.Models
         public string LeagueName { get; set; }
         public string LeagueDescription { get; set; }
     
-        public virtual ICollection<Match> Matches { get; set; }
+        public virtual ICollection<Team> Teams { get; set; }
     }
 }

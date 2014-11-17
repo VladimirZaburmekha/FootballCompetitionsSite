@@ -60,7 +60,6 @@
           <ScalarProperty Name="MatchName" ColumnName="MatchName" />
           <ScalarProperty Name="Team1Id" ColumnName="Team1Id" />
           <ScalarProperty Name="Team2Id" ColumnName="Team2Id" />
-          <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
           <ScalarProperty Name="AddressId" ColumnName="AddressId" />
           <ScalarProperty Name="Date" ColumnName="Date" />
         </MappingFragment>
@@ -96,6 +95,7 @@
           <ScalarProperty Name="TeamId" ColumnName="TeamId" />
           <ScalarProperty Name="TeamName" ColumnName="TeamName" />
           <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+          <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

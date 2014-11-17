@@ -28,9 +28,11 @@ namespace FC.Models
         [Required]
         public string TeamName { get; set; }
         public Nullable<int> AddressId { get; set; }
+        public Nullable<int> LeagueId { get; set; }
     
         public virtual Address Address { get; set; }
         public virtual ICollection<Coach> Coaches { get; set; }
+        public virtual League League { get; set; }
         public virtual ICollection<Match> Matches { get; set; }
         public virtual ICollection<Match> Matches1 { get; set; }
         public virtual ICollection<Player> Players { get; set; }

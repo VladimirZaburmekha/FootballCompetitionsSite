@@ -27,7 +27,7 @@ namespace FC.Models
         public Nullable<int> AddressId { get; set; }
         public string CoachPhone { get; set; }
         public Nullable<int> TeamId { get; set; }
-    
+
         public virtual Address Address { get; set; }
         public virtual Team Team { get; set; }
     }

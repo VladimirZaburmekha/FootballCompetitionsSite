@@ -13,6 +13,8 @@
     <fieldset>
         <legend></legend>
         @Html.HiddenFor(model => model.AddressId)
+        @Html.HiddenFor(model => model.Team1Id)
+        @Html.HiddenFor(model => model.Team2Id)
         <div class="editor-label">
             Назва
         </div>
@@ -20,28 +22,23 @@
             @Html.EditorFor(model => model.MatchName)
             @Html.ValidationMessageFor(model => model.MatchName)
         </div>
-
-        <div class="editor-label">
-            Команда
-        </div>
-        <div class="editor-field">
-           @Html.DropDownListFor(model => model.Team1Id, ViewBag.Teams as SelectList)
-           @Html.ValidationMessageFor(model => model.Team.TeamName)
-        </div>
-        <div class="editor-label">
-            Команда
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.Team2Id, ViewBag.Teams as SelectList)
-           @Html.ValidationMessageFor(model => model.Team1.TeamName)
-        </div>
-
         <div class="editor-label">
             Ліга
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.LeagueId, ViewBag.Leagues as SelectList)
-           @Html.ValidationMessageFor(model => model.League.LeagueName)
+            @Html.DropDownList("League", ViewBag.Leagues as SelectList)
+        </div>
+        <div class="editor-label">
+            Команда
+        </div>
+        <div class="editor-field">
+            <input class="team-search" name="team1-search" type="text" id="team-1"/>
+        </div>
+        <div class="editor-label">
+            Команда
+        </div>
+        <div class="editor-field">
+            <input class="team-search" name="team1-search" type="text" id="team-2"/>
         </div>
         <div class="editor-label">
             Адреса
@@ -86,17 +83,49 @@
                 $("#AddressId").val("");
             }
         });
-        $('#Team1Id').change(function() {
-            if ($('#Team1Id').val() == $('#Team2Id').val()) {
-                $("input").prop('disabled', true);
-                alert("команди повинні бути різними!");
-            }
-            else
-            {
-                $("input").prop('disabled', false);
+        $(".team-search").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Teams/GetTeamsToAutocomplete",
+                    dataType: "json",
+                    data: {
+                        term: request.term,
+                        leagueId: $("#League").val()
+                        
+                    },
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 1,
+            select: function (event, ui) {
+                var teamId = ui.item.id;
+                var idOfteam = $(this).prop("id").split("-")[1];
+                if (idOfteam == 1) {
+                    $('#Team1Id').val(teamId);
+                } else {
+                    $('#Team2Id').val(teamId);
+                }
+                if ($('#Team1Id').val() == $('#Team2Id').val()) {
+                    $("input").prop('disabled', true);
+                    alert("команди повинні бути різними!");
+                }
+                else {
+                    $("input").prop('disabled', false);
+                }
+                $(".team-search").prop('disabled', false);
+
             }
         });
-        $('#Team2Id').change(function () {
+       
+        $(document).delegate('#League', 'change', function () {
+            $('#Team1Id').val("");
+            $('#Team2Id').val("");
+            $('#team-1').val("");
+            $('#team-2').val("");
+        });
+      /*  $(document).delegate('#Team1Id', 'change', function () {
             if ($('#Team1Id').val() == $('#Team2Id').val()) {
                 $("input").prop('disabled', true);
                 alert("команди повинні бути різними!");
@@ -105,7 +134,16 @@
                 $("input").prop('disabled', false);
             }
         });
-        $(document).ready(function () {
+        $(document).delegate('#Team2Id', 'change', function () {
+            if ($('#Team1Id').val() == $('#Team2Id').val()) {
+                $("input").prop('disabled', true);
+                alert("команди повинні бути різними!");
+            }
+            else {
+                $("input").prop('disabled', false);
+            }
+        });*/
+      /*  $(document).ready(function () {
             var optionValues = [];
             $('#Team2Id option').each(function () {
                 optionValues.push($(this).val());
@@ -121,6 +159,6 @@
                 $("input").prop('disabled', false);
                 
             }
-        });
+        });*/
     </script>
 }

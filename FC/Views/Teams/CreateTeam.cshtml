@@ -20,9 +20,15 @@
             @Html.EditorFor(model => model.TeamName)
             @Html.ValidationMessageFor(model => model.TeamName)
         </div>
-
         <div class="editor-label">
-            Адреса
+            Ліга
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.LeagueId, ViewBag.Leagues as SelectList)
+           @Html.ValidationMessageFor(model => model.League.LeagueName)
+        </div>
+        <div class="editor-label">
+            Адреса реєстрації
         </div>
         <div class="editor-field">
             <div class="editor-field">

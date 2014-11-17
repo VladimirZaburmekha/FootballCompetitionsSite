@@ -8,6 +8,9 @@
         <th>
             Місце реєстрації
         </th>
+        <th>
+            Ліга
+        </th>
         <th></th>
     </tr>
 
@@ -28,8 +31,10 @@
             @Html.DisplayFor(modelItem => item.TeamName)
         </td>
         <td>
-           @address
-            
+            @address
+        </td>
+        <td>
+           @Html.DisplayFor(modelItem=>item.League.LeagueName)
         </td>
         <td>
             @Html.ActionLink("Змінити", "EditTeam", new { id=item.TeamId }) |

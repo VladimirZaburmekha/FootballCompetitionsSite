@@ -35,10 +35,6 @@
             <End Role="Addresses" EntitySet="Addresses" />
             <End Role="Matches" EntitySet="Matches" />
           </AssociationSet>
-          <AssociationSet Name="FK_Matches_Leagues" Association="FootballCompetitionsModel.Store.FK_Matches_Leagues">
-            <End Role="Leagues" EntitySet="Leagues" />
-            <End Role="Matches" EntitySet="Matches" />
-          </AssociationSet>
           <AssociationSet Name="FK_Matches_Teams1" Association="FootballCompetitionsModel.Store.FK_Matches_Teams1">
             <End Role="Teams" EntitySet="Teams" />
             <End Role="Matches" EntitySet="Matches" />
@@ -59,6 +55,10 @@
             <End Role="Addresses" EntitySet="Addresses" />
             <End Role="Teams" EntitySet="Teams" />
           </AssociationSet>
+          <AssociationSet Name="FK_Teams_Leagues" Association="FootballCompetitionsModel.Store.FK_Teams_Leagues">
+            <End Role="Leagues" EntitySet="Leagues" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Addresses">
           <Key>
@@ -75,8 +75,8 @@
             <PropertyRef Name="AdminId" />
           </Key>
           <Property Name="AdminId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="AdminLogin" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdminLogin" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Coaches">
           <Key>
@@ -88,7 +88,7 @@
           <Property Name="BirthdayDate" Type="date" />
           <Property Name="AddressId" Type="int" />
           <Property Name="CoachPhone" Type="nvarchar" MaxLength="50" />
-          <Property Name="TeamId" Type="int" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Goals">
           <Key>
@@ -115,7 +115,6 @@
           <Property Name="MatchName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Team1Id" Type="int" Nullable="false" />
           <Property Name="Team2Id" Type="int" Nullable="false" />
-          <Property Name="LeagueId" Type="int" Nullable="false" />
           <Property Name="AddressId" Type="int" />
           <Property Name="Date" Type="date" />
         </EntityType>
@@ -148,6 +147,7 @@
           <Property Name="TeamId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TeamName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="AddressId" Type="int" />
+          <Property Name="LeagueId" Type="int" />
         </EntityType>
         <Association Name="FK_Coaches_Addresses">
           <End Role="Addresses" Type="FootballCompetitionsModel.Store.Addresses" Multiplicity="0..1" />
@@ -162,7 +162,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Coaches_Teams">
-          <End Role="Teams" Type="FootballCompetitionsModel.Store.Teams" Multiplicity="0..1" />
+          <End Role="Teams" Type="FootballCompetitionsModel.Store.Teams" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Coaches" Type="FootballCompetitionsModel.Store.Coaches" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teams">
@@ -174,7 +176,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Goals_Matches">
-          <End Role="Matches" Type="FootballCompetitionsModel.Store.Matches" Multiplicity="1" />
+          <End Role="Matches" Type="FootballCompetitionsModel.Store.Matches" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Goals" Type="FootballCompetitionsModel.Store.Goals" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Matches">
@@ -186,7 +190,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Goals_Players">
-          <End Role="Players" Type="FootballCompetitionsModel.Store.Players" Multiplicity="1" />
+          <End Role="Players" Type="FootballCompetitionsModel.Store.Players" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Goals" Type="FootballCompetitionsModel.Store.Goals" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Players">
@@ -206,18 +212,6 @@
             </Principal>
             <Dependent Role="Matches">
               <PropertyRef Name="AddressId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Matches_Leagues">
-          <End Role="Leagues" Type="FootballCompetitionsModel.Store.Leagues" Multiplicity="1" />
-          <End Role="Matches" Type="FootballCompetitionsModel.Store.Matches" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Leagues">
-              <PropertyRef Name="LeagueId" />
-            </Principal>
-            <Dependent Role="Matches">
-              <PropertyRef Name="LeagueId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -258,7 +252,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Players_Teams">
-          <End Role="Teams" Type="FootballCompetitionsModel.Store.Teams" Multiplicity="1" />
+          <End Role="Teams" Type="FootballCompetitionsModel.Store.Teams" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Players" Type="FootballCompetitionsModel.Store.Players" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teams">
@@ -278,6 +274,18 @@
             </Principal>
             <Dependent Role="Teams">
               <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_Leagues">
+          <End Role="Leagues" Type="FootballCompetitionsModel.Store.Leagues" Multiplicity="0..1" />
+          <End Role="Teams" Type="FootballCompetitionsModel.Store.Teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leagues">
+              <PropertyRef Name="LeagueId" />
+            </Principal>
+            <Dependent Role="Teams">
+              <PropertyRef Name="LeagueId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -324,9 +332,9 @@
             <End Role="Players" EntitySet="Players" />
             <End Role="Goals" EntitySet="Goals" />
           </AssociationSet>
-          <AssociationSet Name="FK_Matches_Leagues" Association="FootballCompetitionsModel.FK_Matches_Leagues">
+          <AssociationSet Name="FK_Teams_Leagues" Association="FootballCompetitionsModel.FK_Teams_Leagues">
             <End Role="Leagues" EntitySet="Leagues" />
-            <End Role="Matches" EntitySet="Matches" />
+            <End Role="Teams" EntitySet="Teams" />
           </AssociationSet>
           <AssociationSet Name="FK_Matches_Teams1" Association="FootballCompetitionsModel.FK_Matches_Teams1">
             <End Role="Teams" EntitySet="Teams" />
@@ -360,8 +368,8 @@
             <PropertyRef Name="AdminId" />
           </Key>
           <Property Name="AdminId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="AdminLogin" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="AdminLogin" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Coach">
           <Key>
@@ -373,7 +381,7 @@
           <Property Name="BirthdayDate" Type="DateTime" Precision="0" />
           <Property Name="AddressId" Type="Int32" />
           <Property Name="CoachPhone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="TeamId" Type="Int32" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="FootballCompetitionsModel.FK_Coaches_Addresses" FromRole="Coaches" ToRole="Addresses" />
           <NavigationProperty Name="Team" Relationship="FootballCompetitionsModel.FK_Coaches_Teams" FromRole="Coaches" ToRole="Teams" />
         </EntityType>
@@ -395,7 +403,7 @@
           <Property Name="LeagueId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="LeagueName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="LeagueDescription" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Matches" Relationship="FootballCompetitionsModel.FK_Matches_Leagues" FromRole="Leagues" ToRole="Matches" />
+          <NavigationProperty Name="Teams" Relationship="FootballCompetitionsModel.FK_Teams_Leagues" FromRole="Leagues" ToRole="Teams" />
         </EntityType>
         <EntityType Name="Match">
           <Key>
@@ -405,12 +413,10 @@
           <Property Name="MatchName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Team1Id" Type="Int32" Nullable="false" />
           <Property Name="Team2Id" Type="Int32" Nullable="false" />
-          <Property Name="LeagueId" Type="Int32" Nullable="false" />
           <Property Name="AddressId" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Address" Relationship="FootballCompetitionsModel.FK_Matches_Addresses" FromRole="Matches" ToRole="Addresses" />
           <NavigationProperty Name="Goals" Relationship="FootballCompetitionsModel.FK_Goals_Matches" FromRole="Matches" ToRole="Goals" />
-          <NavigationProperty Name="League" Relationship="FootballCompetitionsModel.FK_Matches_Leagues" FromRole="Matches" ToRole="Leagues" />
           <NavigationProperty Name="Team" Relationship="FootballCompetitionsModel.FK_Matches_Teams1" FromRole="Matches" ToRole="Teams" />
           <NavigationProperty Name="Team1" Relationship="FootballCompetitionsModel.FK_Matches_Teams2" FromRole="Matches" ToRole="Teams" />
         </EntityType>
@@ -446,8 +452,10 @@
           <Property Name="TeamId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="TeamName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="AddressId" Type="Int32" />
+          <Property Name="LeagueId" Type="Int32" />
           <NavigationProperty Name="Address" Relationship="FootballCompetitionsModel.FK_Teams_Addresses" FromRole="Teams" ToRole="Addresses" />
           <NavigationProperty Name="Coaches" Relationship="FootballCompetitionsModel.FK_Coaches_Teams" FromRole="Teams" ToRole="Coaches" />
+          <NavigationProperty Name="League" Relationship="FootballCompetitionsModel.FK_Teams_Leagues" FromRole="Teams" ToRole="Leagues" />
           <NavigationProperty Name="Matches" Relationship="FootballCompetitionsModel.FK_Matches_Teams1" FromRole="Teams" ToRole="Matches" />
           <NavigationProperty Name="Matches1" Relationship="FootballCompetitionsModel.FK_Matches_Teams2" FromRole="Teams" ToRole="Matches" />
           <NavigationProperty Name="Players" Relationship="FootballCompetitionsModel.FK_Players_Teams" FromRole="Teams" ToRole="Players" />
@@ -501,7 +509,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Coaches_Teams">
-          <End Role="Teams" Type="FootballCompetitionsModel.Team" Multiplicity="0..1" />
+          <End Role="Teams" Type="FootballCompetitionsModel.Team" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Coaches" Type="FootballCompetitionsModel.Coach" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teams">
@@ -513,7 +523,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Goals_Matches">
-          <End Role="Matches" Type="FootballCompetitionsModel.Match" Multiplicity="1" />
+          <End Role="Matches" Type="FootballCompetitionsModel.Match" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Goals" Type="FootballCompetitionsModel.Goal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Matches">
@@ -525,7 +537,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Goals_Players">
-          <End Role="Players" Type="FootballCompetitionsModel.Player" Multiplicity="1" />
+          <End Role="Players" Type="FootballCompetitionsModel.Player" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Goals" Type="FootballCompetitionsModel.Goal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Players">
@@ -536,14 +550,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Matches_Leagues">
-          <End Role="Leagues" Type="FootballCompetitionsModel.League" Multiplicity="1" />
-          <End Role="Matches" Type="FootballCompetitionsModel.Match" Multiplicity="*" />
+        <Association Name="FK_Teams_Leagues">
+          <End Role="Leagues" Type="FootballCompetitionsModel.League" Multiplicity="0..1" />
+          <End Role="Teams" Type="FootballCompetitionsModel.Team" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Leagues">
               <PropertyRef Name="LeagueId" />
             </Principal>
-            <Dependent Role="Matches">
+            <Dependent Role="Teams">
               <PropertyRef Name="LeagueId" />
             </Dependent>
           </ReferentialConstraint>
@@ -573,7 +587,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Players_Teams">
-          <End Role="Teams" Type="FootballCompetitionsModel.Team" Multiplicity="1" />
+          <End Role="Teams" Type="FootballCompetitionsModel.Team" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Players" Type="FootballCompetitionsModel.Player" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teams">
@@ -649,7 +665,6 @@
                 <ScalarProperty Name="MatchName" ColumnName="MatchName" />
                 <ScalarProperty Name="Team1Id" ColumnName="Team1Id" />
                 <ScalarProperty Name="Team2Id" ColumnName="Team2Id" />
-                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
@@ -685,6 +700,7 @@
                 <ScalarProperty Name="TeamId" ColumnName="TeamId" />
                 <ScalarProperty Name="TeamName" ColumnName="TeamName" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

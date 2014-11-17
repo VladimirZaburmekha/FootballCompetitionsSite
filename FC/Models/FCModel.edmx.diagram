@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="df59b423b7484c7c95c3e955d169b25d" Name="Diagram1">
+      <Diagram DiagramId="4fd3b3b732bf4321be9eb7f520d8475b" Name="Diagram1">
         <EntityTypeShape EntityType="FootballCompetitionsModel.Address" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballCompetitionsModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballCompetitionsModel.Coach" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballCompetitionsModel.Goal" Width="1.5" PointX="10.5" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballCompetitionsModel.League" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballCompetitionsModel.Match" Width="1.5" PointX="8.25" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballCompetitionsModel.Player" Width="1.5" PointX="5.25" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballCompetitionsModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FootballCompetitionsModel.Team" Width="1.5" PointX="3" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballCompetitionsModel.Admin" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballCompetitionsModel.Coach" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballCompetitionsModel.Goal" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballCompetitionsModel.League" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballCompetitionsModel.Match" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballCompetitionsModel.Player" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballCompetitionsModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FootballCompetitionsModel.Team" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
         <AssociationConnector Association="FootballCompetitionsModel.FK_Coaches_Addresses" ManuallyRouted="false" />
         <AssociationConnector Association="FootballCompetitionsModel.FK_Matches_Addresses" ManuallyRouted="false" />
         <AssociationConnector Association="FootballCompetitionsModel.FK_Players_Addresses" ManuallyRouted="false" />
@@ -21,7 +21,7 @@
         <AssociationConnector Association="FootballCompetitionsModel.FK_Coaches_Teams" ManuallyRouted="false" />
         <AssociationConnector Association="FootballCompetitionsModel.FK_Goals_Matches" ManuallyRouted="false" />
         <AssociationConnector Association="FootballCompetitionsModel.FK_Goals_Players" ManuallyRouted="false" />
-        <AssociationConnector Association="FootballCompetitionsModel.FK_Matches_Leagues" ManuallyRouted="false" />
+        <AssociationConnector Association="FootballCompetitionsModel.FK_Teams_Leagues" ManuallyRouted="false" />
         <AssociationConnector Association="FootballCompetitionsModel.FK_Matches_Teams1" ManuallyRouted="false" />
         <AssociationConnector Association="FootballCompetitionsModel.FK_Matches_Teams2" ManuallyRouted="false" />
         <AssociationConnector Association="FootballCompetitionsModel.FK_Players_Teams" ManuallyRouted="false" />

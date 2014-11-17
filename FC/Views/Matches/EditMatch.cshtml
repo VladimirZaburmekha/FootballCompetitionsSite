@@ -44,13 +44,6 @@
             @Html.EditorFor(model => model.MatchName)
             @Html.ValidationMessageFor(model => model.MatchName)
         </div>
-          
-            <div class="editor-label">
-                Ліга
-            </div>
-            <div class="editor-field">
-                @Html.DropDownListFor(model => model.LeagueId, ViewBag.Leagues as SelectList)
-            </div>
             <div class="editor-label">
                 Адреса
             </div>

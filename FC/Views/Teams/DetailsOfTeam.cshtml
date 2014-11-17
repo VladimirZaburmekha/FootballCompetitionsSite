@@ -26,8 +26,13 @@
             <td>@Html.DisplayFor(model => model.TeamName)</td>
         </tr>
         <tr>
-            <td style="font-weight: bold">Місце реєстрації</td>  
+            <td style="font-weight: bold">Місце реєстрації:</td>  
             <td>@address</td>
+        </tr>
+        
+        <tr>
+            <td>Ліга:</td>
+            <td>@Html.DisplayFor(model=>model.League.LeagueName)</td>
         </tr>
         <tr>
             <td style="font-weight: bold"> Кількість перемог: </td>  

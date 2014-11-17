@@ -19,7 +19,7 @@ namespace FC.Models
         public int AdminId { get; set; }
         [Required]
         public string AdminLogin { get; set; }
-         [Required]
+        [Required]
         public string Password { get; set; }
     }
 }

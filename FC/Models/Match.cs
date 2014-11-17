@@ -20,20 +20,21 @@ namespace FC.Models
         {
             this.Goals = new HashSet<Goal>();
         }
-    
+
         public int MatchId { get; set; }
+        [Required]
         public string MatchName { get; set; }
+        [Required]
         public int Team1Id { get; set; }
+        [Required]
         public int Team2Id { get; set; }
-        public Nullable<int> LeagueId { get; set; }
         public Nullable<int> AddressId { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Date { get; set; }
-    
+
         public virtual Address Address { get; set; }
         public virtual ICollection<Goal> Goals { get; set; }
-        public virtual League League { get; set; }
         public virtual Team Team { get; set; }
         public virtual Team Team1 { get; set; }
     }

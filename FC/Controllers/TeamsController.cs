@@ -35,7 +35,8 @@ namespace FC.Controllers
                 var selectedTeams =
                     (from t in teams where 
                               t.TeamName.ToLower().Contains(template.ToLower())||
-              (t.Address != null && t.Address.ToString().ToLower().Contains(template))
+              (t.Address != null && t.Address.ToString().ToLower().Contains(template))||
+              (t.League != null && t.League.LeagueName.ToLower().Contains(template))
                 
                 select t).ToList();
                 return PartialView("TeamsTable", selectedTeams);
@@ -45,6 +46,9 @@ namespace FC.Controllers
         [HttpGet]
         public ActionResult CreateTeam()
         {
+            var leagues = new BaseService<League>(new FootballCompetitionsEntities()).GetAll();
+            var Leagues = new SelectList(leagues, "LeagueId", "LeagueName");
+            ViewBag.Leagues = Leagues;
             return View();
         }
         [Authorize]
@@ -73,6 +77,9 @@ namespace FC.Controllers
                     {
                         ViewBag.currentAddress = null;
                     }
+                    var leagues = new BaseService<League>(new FootballCompetitionsEntities()).GetAll();
+                    var Leagues = new SelectList(leagues, "LeagueId", "LeagueName");
+                    ViewBag.Leagues = Leagues;
                     return View(team);
                 }
                 else return View("Error");
@@ -193,6 +200,17 @@ namespace FC.Controllers
             {
                 return PartialView("Error");
             }
+        }
+
+        public JsonResult GetTeamsToAutocomplete(string term, int? leagueId)
+        {
+            if (leagueId == null) leagueId = -1;
+            var teams = new BaseService<Team>(new FootballCompetitionsEntities()).FindAll(t=>t.LeagueId==leagueId);
+            var selectedTeams =
+                (from t in teams
+                    where t.TeamName.ToLower().Contains(term)
+                    select new {id = t.TeamId, value = t.TeamName}).ToList();
+            return Json(selectedTeams, JsonRequestBehavior.AllowGet);
         }
 
     }
